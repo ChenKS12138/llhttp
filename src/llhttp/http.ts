@@ -315,8 +315,8 @@ export class HTTP {
 
     // Response
     n('start_res')
-      .match('HTTP/', span.version.start(n('res_http_major')))
-      .otherwise(p.error(ERROR.INVALID_CONSTANT, 'Expected HTTP/'));
+      .match(['HTTP/', 'RTSP/'], span.version.start(n('res_http_major')))
+      .otherwise(p.error(ERROR.INVALID_CONSTANT, 'Expected HTTP/ RTSP/'));
 
     n('res_http_major')
       .select(MAJOR, this.store('http_major', 'res_http_dot'))
